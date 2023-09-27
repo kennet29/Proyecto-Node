@@ -1,0 +1,54 @@
+GET http://localhost:3000/estilo
+
+####
+POST http://localhost:3000/estilos
+Content-Type: application/json
+
+{
+  "nombre": "3232",
+  "descripcion": "sdsd",
+  "estado": 1
+}
+
+###
+DELETE http://localhost:3000/tallas/1
+Content-Type: application/json
+
+
+###
+PUT  http://localhost:3000/estilo/1
+Content-Type: application/json
+
+{
+ "nombre": "sd",
+  "descripcion": "3",
+  "estado": 1
+}
+
+
+
+###
+GET http://localhost:3000/Marcas
+
+####
+POST http://localhost:3000/Tallas
+Content-Type: application/json
+
+{
+  "Nombre": "dfdfd",
+  "estado": "true"
+}
+
+###
+DELETE http://localhost:3000/Categorias/5
+Content-Type: application/json
+
+
+###
+PUT  http://localhost:3000/tallas/6
+Content-Type: application/json
+
+{
+ "nombre": "hola",
+  "estado": "0"
+}
