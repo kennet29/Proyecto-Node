@@ -51,7 +51,7 @@
                 </div>
                 <form id="formTallas">
                     <div class="modal-body">
-                        <input id="id" hidden>
+                        <input id="codigo" hidden>
                         <label for="nombre" class="col-form-label">Nombre:</label>
                         <input type="text" class="form-control" id="nombre">
                         <label for="descripcion" class="col-form-label">Descripción</label>
@@ -124,7 +124,7 @@
                 nombre = fila.find('td:eq(1)').text();
                 descripcion = fila.find('td:eq(2)').text();
                 estado = fila.find('td:eq(3)').text();
-                $("#id").val(codigo);
+                $("#codigo").val(codigo);
                 $("#nombre").val(nombre);
                 $("#descripcion").val(descripcion);
                 $("#estado").val(estado);
@@ -147,7 +147,7 @@
                         $.ajax({
                             url: url + codigo,
                             method: 'delete',
-                            data: { id: codigo },
+                            data: { codigo: codigo },
                             success: function() {
                                 table.row(fila.parents('tr')).remove().draw();
                             }
@@ -160,7 +160,7 @@
             // Envío del formulario para Crear y Editar
             $('#formTallas').submit(function(e) {
                 e.preventDefault();
-                codigo = $.trim($('#id').val());
+                codigo = $.trim($('#codigo').val());
                 nombre = $.trim($('#nombre').val());
                 descripcion = $.trim($('#descripcion').val());
                 estado = $.trim($('#estado').val());

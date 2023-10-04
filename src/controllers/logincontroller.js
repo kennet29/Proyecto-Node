@@ -8,7 +8,10 @@ export const getIndex = async (req, res) => {
       imagePath: '/images/logo.jpg' // Ruta relativa a la carpeta "public"
     });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.render('acceso-denegado', {
+      cssPaths: ['/css/estilos-404.css'],
+      // Ruta relativa a la carpeta "public"
+    });
   }
 };
 
@@ -42,3 +45,19 @@ export const login = async (req, res) => {
     res.status(500).send('Error interno del servidor');
   }
 };
+
+function generateToken(user) {
+  const payload = {
+    userId: user.id, // Include any user-related data you need
+    // Add other claims as needed
+  };
+
+  const options = {
+    expiresIn: '15m', // Set the token expiration time as needed
+  };
+
+  // Sign the token using your secret key from environment variables
+  const token = jwt.sign(payload, process.env.JWT_SECRET, options);
+
+  return token;
+}

@@ -18,35 +18,27 @@ import usuariosroutes from "./routes/usuariosroutes";
 import configuracionroutes from "./routes/configuracionroutes"
 import articulosroutes from "./routes/articulosroutes"
 import morgan from "morgan";
-
+const { generateToken } = require('./touch jwt');
 import path from "path";
 const {join} = require('path')
 //import bodyParser from "body-parser";
 
-
 const app = express()
-
 // settings
 app.set('port', config.port)
-
 //app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
-
 //app.use(bodyParser.json());
 //app.use(bodyParser.productRoutes({extended:false}));
 app.use(express.urlencoded({extended:false}));
-
 //app.use('views', path.join(__dirname, ('views')));
 app.use(express.json());
-
-app.use('/static',express.static(join(process.cwd(),"public")));
 app.use('/static',express.static(join(process.cwd(),"public")));
 app.use(express.static('public'));
 // Middlewares
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
-
 app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     next();
@@ -55,7 +47,7 @@ app.use((req, res, next) => {
 // Routes
 //app.use("/api", productRoutes);
 app.use(articulosroutes);
-app.use( productRoutes);
+app.use(productRoutes);
 app.use(categoriasroutes)
 app.use(coloresroutes);
 app.use(diseñosroutes);
@@ -71,6 +63,6 @@ app.use(usuariosroutes);
 app.use(bodegasroutes);
 app.use(configuracionroutes)
 app.use(express.json());
-app.use(express.static('public'));
+
 app.use(express.static('public/images'));
 export default app

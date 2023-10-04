@@ -7,7 +7,7 @@ const config = {
   user: 'sa',
   password: '1234',
   options: {
-    encrypt: false, // Si utilizas una conexión encriptada
+  encrypt: false, // Si utilizas una conexión encriptada
   },
 };
 

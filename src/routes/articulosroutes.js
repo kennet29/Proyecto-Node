@@ -3,7 +3,6 @@ import {
   getArticulos,
   getAllArticulos,
   createNewArticulo,
-
   deleteArticuloById,
   updateArticuloById,
 } from "../controllers/articuloscontroller"; // Assuming the controller file is named "articuloscontroller.js"

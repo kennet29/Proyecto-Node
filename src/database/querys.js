@@ -84,9 +84,11 @@ export const querys = {
       UpdateConfig:"UPDATE Configuracion SET Dirreccion = @direccion,Correo_electronico = @correoElectronico,telefono_1 = @telefono1,telefono_2 = @telefono2,Eslogan = @eslogan,tipo_de_cambio = @tipoDeCambio WHERE Id = 1",
       getConfiguracion:" SELECT Id AS codigo,Nombre_negocio AS nombreNegocio, Dirreccion AS direccion, Correo_electronico AS correoElectronico, telefono_1 AS telefono1, telefono_2 AS telefono2, Eslogan AS eslogan, tipo_de_cambio AS tipoDeCambio FROM Configuracion;",
 
-      getAllArticulos:"SELECT A.Id_articulo AS codigo, C.Id_categoria, C.Categoria AS nombre_categoria, A.Nombre, A.Descripcion, A.Estado, P.Id_promocion, P.Promocion AS nombre_promocion FROM Articulos A INNER JOIN Categorias C ON A.Id_categoria = C.Id_categoria INNER JOIN Promociones P ON A.Id_promocion = P.Id_promocion",
-      addNewArticulo:"INSERT INTO Articulos (Id_categoria, Nombre, Descripcion, Estado, Id_promocion) VALUES (@id_categoria, @nombre, @descripcion, @estado, @id_promocion)",
+      getAllArticulos:"SELECT A.Id_articulo AS codigo, C.Id_categoria, C.Categoria AS nombre_categoria, A.Nombre, A.Descripcion, A.Estado, P.Id_promocion, P.Promocion AS nombre_promocion FROM Articulos A INNER JOIN Categorias C ON A.Id_categoria = C.Id_categoria INNER JOIN Promociones P ON A.Id_promocion = P.Id_promocion;",
+      addNewArticulo:"INSERT INTO Articulos (Id_categoria, Nombre, Descripcion, Estado, Id_promocion) VALUES (@id_categoria, @nombre, @descripcion, @estado, @id_promocion);",
       deleteArticulo:"DELETE FROM Articulos WHERE Id_articulo = @codigo",
       updateArticuloById:"UPDATE Articulos SET Id_categoria = @id_categoria, Nombre = @nombre, Descripcion = @descripcion, Estado = @estado, Id_promocion = @id_promocion WHERE Id_articulo = @codigo",
+      completar_promo_articulo:" SELECT Id_promocion, Promocion FROM Promociones;",
+      completar_cat_articulo:" SELECT Id_categoria, Categoria FROM Categorias;",
 }
   
