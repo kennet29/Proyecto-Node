@@ -34,7 +34,10 @@ app.use(express.urlencoded({extended:false}));
 //app.use('views', path.join(__dirname, ('views')));
 app.use(express.json());
 app.use('/static',express.static(join(process.cwd(),"public")));
+app.use('/static',express.static(join(process.cwd(),"public/js")));
 app.use(express.static('public'));
+
+app.use(express.static('public/js'));
 // Middlewares
 app.use(cors());
 app.use(morgan("dev"));
@@ -65,4 +68,5 @@ app.use(configuracionroutes)
 app.use(express.json());
 
 app.use(express.static('public/images'));
+app.use(express.static('public/js'));
 export default app

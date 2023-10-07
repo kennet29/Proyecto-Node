@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Configuración</title>
     <script src="https://kit.fontawesome.com/433c5e385c.js" crossorigin="anonymous"></script>
-    <!-- Agrega tus enlaces a archivos CSS aquí si es necesario -->
+    <% for (let i = 0; i < cssPaths.length; i++) { %>
+        <link rel="stylesheet" type="text/css" href="<%= cssPaths[i] %>">
+    <% } %>
 </head>
-<% for (let i = 0; i < cssPaths.length; i++) { %>
-    <link rel="stylesheet" type="text/css" href="<%= cssPaths[i] %>">
-  <% } %>
 <body>
     <nav class="navbar">
         <div class="navbar-left">
@@ -18,7 +17,7 @@
             </a>
         </div>
         <div class="navbar-center">
-            <strong >
+            <strong>
                 Modulo Configuracion
             </strong>
         </div>
@@ -29,90 +28,29 @@
         </div>
     </nav>
     <fieldset class="container">
-    <legend>Configuracion</legend>
-    <form id="configForm">
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion"><br><br>
+        <legend>Configuracion</legend>
+        <form id="configForm">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion"><br><br>
 
-        <label for="correoElectronico">Correo Electrónico:</label>
-        <input type="email" id="correoElectronico" name="correoElectronico"><br><br>
+            <label for="correoElectronico">Correo Electrónico:</label>
+            <input type="email" id="correoElectronico" name="correoElectronico"><br><br>
 
-        <label for="telefono1">Teléfono 1:</label>
-        <input type="tel" id="telefono1" name="telefono1"><br><br>
+            <label for="telefono1">Teléfono 1:</label>
+            <input type="tel" id="telefono1" name="telefono1"><br><br>
 
-        <label for="telefono2">Teléfono 2:</label>
-        <input type="tel" id="telefono2" name="telefono2"><br><br>
+            <label for="telefono2">Teléfono 2:</label>
+            <input type="tel" id="telefono2" name="telefono2"><br><br>
 
-        <label for="eslogan">Eslogan:</label>
-        <input type="text" id="eslogan" name="eslogan"><br><br>
+            <label for="eslogan">Eslogan:</label>
+            <input type="text" id="eslogan" name="eslogan"><br><br>
 
-        <label for="tipoDeCambio">Tipo de Cambio  Dolar:</label>
-        <input type="number" id="tipoDeCambio" name="tipoDeCambio"><br><br>
-
-        
-    </form>
+            <label for="tipoDeCambio">Tipo de Cambio  Dolar:</label>
+            <input type="number" id="tipoDeCambio" name="tipoDeCambio"><br><br>
+        </form>
     </fieldset>
     <button type="button" onclick="guardarCambios()"><i class="fa-solid fa-floppy-disk fa-beat fa-2xl"></i></button>
-    
 
-    <script>
-        // Función para cargar datos actuales de la configuración desde la URL
-        async function cargarDatosActuales() {
-            try {
-                const response = await fetch('http://localhost:3000/configuraciones'); // URL de donde vienen los datos
-                if (!response.ok) {
-                    throw new Error('No se pudieron cargar los datos.');
-                }
-                const data = await response.json();
-
-                // Llena los campos del formulario con los datos obtenidos
-                const config = data[0]; // Suponemos que el registro que deseas editar es el primero
-                document.getElementById('direccion').value = config.direccion;
-                document.getElementById('correoElectronico').value = config.correoElectronico;
-                document.getElementById('telefono1').value = config.telefono1;
-                document.getElementById('telefono2').value = config.telefono2;
-                document.getElementById('eslogan').value = config.eslogan;
-                document.getElementById('tipoDeCambio').value = config.tipoDeCambio;
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        // Función para guardar cambios en la configuración
-        async function guardarCambios() {
-            const form = document.getElementById("configForm");
-            const formData = new FormData(form);
-
-            try {
-                const response = await fetch('http://localhost:3000/configuraciones/1', {
-                    method: 'PUT',
-                    body: JSON.stringify(Object.fromEntries(formData)),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('No se pudieron guardar los cambios.');
-                }
-
-                const mensaje = document.getElementById('mensaje');
-                
-                alert("Cambios Realizados");
-                
-            } catch (error) {
-                console.error(error);
-                const mensaje = document.getElementById('mensaje');
-                mensaje.textContent = 'Error al guardar los cambios.';
-                mensaje.style.color = 'red';
-            }
-        }
-
-        // Cargar los datos actuales cuando se cargue la página
-        window.onload = function() {
-            cargarDatosActuales();
-        };
-    </script>
     <footer class="footer-distributed">
         <div class="footer-left">
           <h3>Mafy<span style="font-style: italic;">Store</span></h3>
@@ -154,6 +92,7 @@
             <a href="#"><i class="fa fa-youtube"></i></a>
           </div>
         </div>
-      </footer>
+    </footer>
+    <script src="/js/configuracion.js"></script>
 </body>
 </html>
